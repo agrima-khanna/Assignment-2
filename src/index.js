@@ -138,7 +138,7 @@ document.addEventListener(
         cancel.classList.add("editActive");
 
         status.textContent = "Edit Grocery Item";
-        submit.value = "Edit item";
+        submit.value = "Update";
 
         current.item = event.target.closest(".item");
         current.name = event.target.closest(

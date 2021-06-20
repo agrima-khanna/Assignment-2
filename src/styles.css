@@ -74,7 +74,9 @@ body {
   color: white;
   border: none;
   font-size: small;
-  padding: 10px;
+  padding: 10px 15px 10px 15px;
+  float: right;
+  margin-left: 8px;
   border-radius: 4px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -109,9 +111,11 @@ label {
 }
 input {
   font-size: large;
-  padding: 10px;
+  padding: 7px;
+  border: none;
+  border-style: solid;
   font-weight: normal;
-  border-radius: 8px;
+  border-radius: 12px;
   border-width: thin;
   border-color: gray;
   text-transform: capitalize;
@@ -143,9 +147,10 @@ input {
   color: white;
   border: none;
   font-size: small;
-  padding: 10px;
+  padding: 10px 15px 10px 15px;
   border-radius: 4px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  float: right;
 }
 
 .list {
