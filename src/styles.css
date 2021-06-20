@@ -1,0 +1,259 @@
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: #b6c9f0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.content {
+  display: flex;
+  flex-wrap: wrap;
+
+  padding: 12vw;
+  padding-top: 8vw;
+
+  gap: 10px;
+  justify-content: space-around;
+
+  box-sizing: border-box;
+}
+.top {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  font-size: x-large;
+  background-color: #000000;
+  color: white;
+  padding: 15px;
+  margin-bottom: 5px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.status {
+  /* position: fixed; */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-wrap: wrap;
+
+  /* height: 40vh; */
+  padding-left: 2vw;
+  padding-right: 2vw;
+  padding-bottom: 2vw;
+
+  background: #e8e8e8;
+  border-radius: 5px;
+
+  /* float: left; */
+}
+.display {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 60vh;
+
+  max-width: 80vw;
+
+  /* max-width: 80vh; */
+  background: white;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  padding-bottom: 1vw;
+  border-radius: 5px;
+
+  /* padding-left: 10px; */
+  /* background: honeydew; */
+  background: white;
+}
+.cancel {
+  display: none;
+  background: #ef4f4f;
+  color: white;
+  border: none;
+  font-size: small;
+  padding: 10px;
+  border-radius: 4px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.edit {
+  background: #fcecdd;
+}
+.editActive {
+  display: inline;
+}
+
+.heading {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: xx-large;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  padding-top: 40px;
+  border-bottom: solid;
+  border-width: thin;
+  border-color: gray;
+  /* background: #a98b98; */
+
+  /* border-style: solid; */
+}
+label {
+  font-size: medium;
+  color: black;
+
+  font-family: sans-serif;
+}
+input {
+  font-size: large;
+  padding: 10px;
+  font-weight: normal;
+  border-radius: 8px;
+  border-width: thin;
+  border-color: gray;
+  text-transform: capitalize;
+}
+.quantDiv {
+  display: inline;
+  margin-left: 5px;
+  /* background: #cdc7be; */
+  font-size: large;
+}
+
+.quantDiv > button {
+  font-size: large;
+
+  /* background-color: #faf3f3; */
+}
+#quantity {
+  display: inline;
+  font-size: large;
+  /* border-right: solid;
+  border-left: solid;
+  border-width: thin; */
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.submitBtn {
+  background: #31326f;
+  color: white;
+  border: none;
+  font-size: small;
+  padding: 10px;
+  border-radius: 4px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.list {
+  padding-left: 0;
+  display: flex;
+  overflow-y: scroll;
+  flex: 1;
+  flex-direction: column;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  padding: 20px;
+  /* font-size: x-large; */
+  margin: 10px;
+}
+
+.item:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  background: #f8bd7f;
+}
+.details {
+  flex: 1;
+
+  /* background: coral; */
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  /* align-items: center; */
+  justify-content: center;
+}
+.itemName {
+  flex: 1;
+  width: 30vw;
+  word-wrap: break-word;
+  overflow: scroll;
+  font-size: x-large;
+  color: #393b44;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  text-transform: capitalize;
+}
+.itemQuantity {
+  flex: 1;
+  width: fit-content;
+  display: inline;
+  /* font-weight: bold; */
+  color: #6e6d6d;
+  font-size: x-large;
+  font-family: monospace;
+}
+
+.itemQuantity::before {
+  content: "x ";
+}
+.editOptions {
+  display: flex;
+  gap: 4px;
+}
+
+.fas {
+  color: grey;
+}
+
+.fas:hover {
+  color: #ea5455;
+  cursor: pointer;
+}
+
+.editOptions > button {
+  background: none;
+  border: none;
+}
+#deleteAll {
+  display: inline;
+  background: none;
+  border: none;
+  float: right;
+}
+#count {
+  background: #f08a5d;
+  border-radius: 50%;
+  padding: 7px;
+  font-size: large;
+  color: white;
+}
+@media only screen and (max-width: 1080px) {
+  .content {
+    display: flex;
+    flex-direction: column;
+    padding: 5vw;
+    padding-top: 8vw;
+  }
+  .display {
+    height: 50vh;
+    max-width: none;
+  }
+  .quantDiv {
+    margin-top: 5px;
+    display: block;
+  }
+  .status {
+    padding: 3vw;
+  }
+  .heading {
+    padding-top: 20px;
+  }
+
+  input {
+    font-size: medium;
+  }
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script
+      src="https://kit.fontawesome.com/2310dc0d20.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="src/styles.css" />
+    <script type="module" src="src/index.js"></script>
+
+    <title>Assignment-2</title>
+  </head>
+  <body>
+      <div class="top">Grocery List</div>
+      <div class="content">
+    <div class="status add">
+      <div class="heading">Add Grocery Item</div
+      >
+      </br>
+      <form action="">
+      
+        <label for="name">Item:</label><br />
+        <input type="text" id="name" name="name" placeholder="Item name" />
+        <div class="quantDiv">
+        <button id="decrement" type="button">-</button>
+        <div id="quantity" name="quantity" value="1" >1</div>
+        <button id="increment" type="button">+</button>
+       
+        </div>
+      </br> </br>
+
+        <input
+          class="submitBtn"
+          name="submitBtn"
+          type="submit"
+          value="Add Item"
+        />
+        <button id="cancel" class="cancel" type="button">Cancel</button>
+      </form>
+    </div>
+    <div class="display">
+      <div class="heading">Grocery List <sup id="count">0</sup> <button id="deleteAll"> <i class="fas fa-trash fa-2x"></i> </button></div>
+      
+    </br>
+      <ul class="list" style="list-style-type: none"></ul>
+    </div>
+  </div>
+  </body>
+</html>
