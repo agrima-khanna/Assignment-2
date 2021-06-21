@@ -10,14 +10,14 @@ var inputQuantity = document.getElementById("quantity");
 var submit = document.querySelector(".submitBtn");
 var itemBeingEdited = {
   name: null,
-  status: false,
+  status: false
 };
 var itemList = {};
 count.textContent = 0;
 var correspondingDom = {};
 
 var handleClickEvent = (item) => {
-  //click event for  buttons of each item at the time of creating that item
+  //click event added for  buttons of each item at the time of creating that item
   var editBtn = item.querySelector("#edit");
   var delBtn = item.querySelector("#delete");
 
@@ -129,10 +129,9 @@ form.addEventListener("submit", (event) => {
     //add item or item name changed
     if (itemList.hasOwnProperty(inputName.value)) {
       //name already exists
-      var oldQuantity =
-        correspondingDom[inputName.value].querySelector(
-          ".itemQuantity"
-        ).textContent;
+      var oldQuantity = correspondingDom[inputName.value].querySelector(
+        ".itemQuantity"
+      ).textContent;
       correspondingDom[inputName.value].querySelector(
         ".itemQuantity"
       ).textContent = inputQuantity.textContent - 0 + (oldQuantity - 0);
@@ -144,7 +143,6 @@ form.addEventListener("submit", (event) => {
       localStorage.itemsList = JSON.stringify(itemList);
 
       updated = 1;
-      //console.log(inputQuantity.value);
     }
 
     if (!updated) {
