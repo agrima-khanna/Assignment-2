@@ -22,7 +22,7 @@
       <form action="">
       
         <label for="name">Item</label><br />
-        <input type="text" id="name" name="name" placeholder="Item name" required />
+        <input type="text" id="name" name="name" placeholder="Item name"  />
         <div class="quantDiv">
         <button id="decrement" type="button">-</button>
         <div id="quantity" name="quantity" value="1" >1</div>
@@ -30,16 +30,25 @@
        
         </div>
       </br> </br> 
+      <button type="button" id="addTemp"><i class="fas fa-plus fa-lg"></i></button> 
+       </br> </br> 
+         </div>
+      <div class="tempSection">
+      <ul class="tempList"  style="list-style-type: none"></ul>
+     
+     </div>
+     
       <button id="cancel" class="cancel" type="button">Cancel</button>
         
         <input
           class="submitBtn"
           name="submitBtn"
           type="submit"
-          value="Add Item"
+          value="Add To Cart"
         />
       </form>
-    </div>
+    
+
     </div>
     <div class="display">
       <div class="heading">Grocery List <sup id="count">0</sup> <button id="deleteAll"> <i class="fas fa-trash fa-2x"></i> </button></div>

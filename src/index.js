@@ -8,14 +8,22 @@ var status = document.querySelector(".heading");
 var inputName = form.elements["name"];
 var inputQuantity = document.getElementById("quantity");
 var submit = document.querySelector(".submitBtn");
+var tempList = document.querySelector(".tempList");
+var tempArray = {};
 var itemBeingEdited = {
   name: null,
-  status: false
+  status: false,
 };
 var itemList = {};
 count.textContent = 0;
 var correspondingDom = {};
-
+var addEventListenerToTempItem = (tempItem, name) => {
+  var deleteTempItem = tempItem.querySelector("#deleteTempItem");
+  deleteTempItem.addEventListener("click", () => {
+    tempList.removeChild(tempItem);
+    delete tempArray[name];
+  });
+};
 var handleClickEvent = (item) => {
   //click event added for  buttons of each item at the time of creating that item
   var editBtn = item.querySelector("#edit");
@@ -95,8 +103,41 @@ function reset() {
   cancel.classList.remove("editActive");
 
   status.textContent = "Add Grocery Item";
-  submit.value = "Add item";
+  submit.value = "Add to Cart";
 }
+function updateItemThatExists(name, quantity) {
+  if (itemList.hasOwnProperty(name)) {
+    //name already exists
+    var oldQuantity =
+      correspondingDom[name].querySelector(".itemQuantity").textContent;
+    correspondingDom[name].querySelector(".itemQuantity").textContent =
+      quantity - 0 + (oldQuantity - 0);
+    itemList[name]["quantity"] = quantity - 0 + (oldQuantity - 0);
+    itemList[name]["dom"] = correspondingDom[name].innerHTML;
+
+    localStorage.itemsList = JSON.stringify(itemList);
+
+    return 1;
+  }
+
+  return 0;
+}
+function addNewItem(name, quantity) {
+  //new item added
+  var item = createItem(name, quantity);
+  list.appendChild(item);
+  handleClickEvent(item);
+
+  correspondingDom[name] = item;
+  itemList[name] = {};
+  itemList[name]["dom"] = item.innerHTML; //li tag not included
+  itemList[name]["quantity"] = quantity;
+
+  count.textContent++;
+
+  localStorage.itemsList = JSON.stringify(itemList);
+}
+
 form.addEventListener("submit", (event) => {
   var updated = 0;
   if (itemBeingEdited.status != false) {
@@ -124,42 +165,16 @@ form.addEventListener("submit", (event) => {
       delete itemList[itemBeingEdited.name];
       localStorage.itemsList = JSON.stringify(itemList);
     }
-  }
-  if (!updated) {
-    //add item or item name changed
-    if (itemList.hasOwnProperty(inputName.value)) {
-      //name already exists
-      var oldQuantity = correspondingDom[inputName.value].querySelector(
-        ".itemQuantity"
-      ).textContent;
-      correspondingDom[inputName.value].querySelector(
-        ".itemQuantity"
-      ).textContent = inputQuantity.textContent - 0 + (oldQuantity - 0);
-      itemList[inputName.value]["quantity"] =
-        inputQuantity.textContent - 0 + (oldQuantity - 0);
-      itemList[inputName.value]["dom"] =
-        correspondingDom[inputName.value].innerHTML;
-
-      localStorage.itemsList = JSON.stringify(itemList);
-
-      updated = 1;
+    if (!updateItemThatExists(inputName.value, inputQuantity.textContent))
+      addNewItem(inputName.value, inputQuantity.textContent);
+  } else {
+    console.log(tempArray);
+    for (var key in tempArray) {
+      if (!updateItemThatExists(key, tempArray[key]))
+        addNewItem(key, tempArray[key]);
     }
-
-    if (!updated) {
-      //new item added
-      var item = createItem(inputName.value, inputQuantity.textContent);
-      list.appendChild(item);
-      handleClickEvent(item);
-
-      correspondingDom[inputName.value] = item;
-      itemList[inputName.value] = {};
-      itemList[inputName.value]["dom"] = item.innerHTML; //li tag not included
-      itemList[inputName.value]["quantity"] = inputQuantity.textContent;
-
-      count.textContent++;
-
-      localStorage.itemsList = JSON.stringify(itemList);
-    }
+    tempArray = [];
+    tempList.innerHTML = "";
   }
   reset();
 
@@ -193,6 +208,19 @@ document.addEventListener(
         inputQuantity.textContent > 1
       )
         inputQuantity.textContent = inputQuantity.textContent - 1;
+      else if (event.target.closest("button").id == "addTemp") {
+        if (inputName.value != "") {
+          var tempItem = document.createElement("div");
+          tempItem.classList.add("tempItem");
+          tempItem.innerHTML = `<div class="tempName">${inputName.value}</div><div class="tempQuantity">x${inputQuantity.textContent}</div> <button id="deleteTempItem" style="background:none; border:none;"><i class="fas fa-minus"></i></button> `;
+          tempList.appendChild(tempItem);
+          addEventListenerToTempItem(tempItem, inputName.value);
+          if (tempArray.hasOwnProperty(inputName.value))
+            tempArray[inputName.value] =
+              inputQuantity.textContent - 0 + (tempArray[inputName.value] - 0);
+          else tempArray[inputName.value] = inputQuantity.textContent;
+        }
+      }
     }
   },
   false

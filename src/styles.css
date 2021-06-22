@@ -76,7 +76,7 @@ body {
   font-size: small;
   padding: 10px 15px 10px 15px;
   float: right;
-  margin-left: 8px;
+  margin: 0 35px 0 35px;
   border-radius: 4px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -168,8 +168,33 @@ input:active {
   border-radius: 4px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   float: right;
+  margin: 0 35px 0 35px;
+}
+.tempList {
+  padding: 0;
+}
+.tempItem {
+  display: flex;
+  justify-content: space-between;
+  background: #f0ece3;
+  padding: 10px;
+
+  border-bottom: 1px solid #dfd3c3;
+  border-top: 1px solid #dfd3c3;
+  color: #4a3f35;
 }
 
+.tempName {
+  width: 20%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+#addTemp {
+  background: none;
+  border: none;
+  color: black;
+}
 .list {
   padding-left: 0;
   display: flex;
