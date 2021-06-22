@@ -12,7 +12,7 @@ var tempList = document.querySelector(".tempList");
 var tempArray = {};
 var itemBeingEdited = {
   name: null,
-  status: false,
+  status: false
 };
 var itemList = {};
 count.textContent = 0;
@@ -108,8 +108,8 @@ function reset() {
 function updateItemThatExists(name, quantity) {
   if (itemList.hasOwnProperty(name)) {
     //name already exists
-    var oldQuantity =
-      correspondingDom[name].querySelector(".itemQuantity").textContent;
+    var oldQuantity = correspondingDom[name].querySelector(".itemQuantity")
+      .textContent;
     correspondingDom[name].querySelector(".itemQuantity").textContent =
       quantity - 0 + (oldQuantity - 0);
     itemList[name]["quantity"] = quantity - 0 + (oldQuantity - 0);
@@ -196,6 +196,7 @@ document.addEventListener(
         count.textContent = "0";
 
         reset();
+        // }
       } else if (btn.id == "cancel") {
         reset();
       } else if (
@@ -212,13 +213,14 @@ document.addEventListener(
         if (inputName.value != "") {
           var tempItem = document.createElement("div");
           tempItem.classList.add("tempItem");
-          tempItem.innerHTML = `<div class="tempName">${inputName.value}</div><div class="tempQuantity">x${inputQuantity.textContent}</div> <button id="deleteTempItem" style="background:none; border:none;"><i class="fas fa-minus"></i></button> `;
+          tempItem.innerHTML = `<div class="tempName">${inputName.value}</div><div class="tempQuantity">x ${inputQuantity.textContent}</div> <button id="deleteTempItem" style="background:none; border:none;"><i class="fas fa-minus"></i></button> `;
           tempList.appendChild(tempItem);
           addEventListenerToTempItem(tempItem, inputName.value);
           if (tempArray.hasOwnProperty(inputName.value))
             tempArray[inputName.value] =
               inputQuantity.textContent - 0 + (tempArray[inputName.value] - 0);
           else tempArray[inputName.value] = inputQuantity.textContent;
+          reset();
         }
       }
     }
